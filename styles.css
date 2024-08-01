@@ -20,7 +20,7 @@ body {
 
 /* Navbar Styles */
 header {
-    background: #333;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     color: #fff;
     padding: 10px 0;
     position: sticky;

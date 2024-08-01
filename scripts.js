@@ -40,3 +40,4 @@ window.addEventListener('load', () => {
     document.querySelector('header').classList.add('active');
     document.querySelector('#hero').classList.add('active');
 });
+
