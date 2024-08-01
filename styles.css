@@ -293,3 +293,47 @@ header, #hero {
     transform: translateY(-20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+
+/* Social Links Style */
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #fff; /* White color for the icons */
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.5rem; /* Adjust size as needed */
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #aaa;
+}
+
+.email-link {
+    font-size: 1.5rem; /* Adjust size as needed */
+}
+
+.social-icon {
+    font-size: 1.5rem; /* Adjust size as needed */
+}
+
+/* Current Status Section */
+#current-status {
+    background: #f4f4f4; /* Background color for the section */
+    padding: 40px 0;
+    text-align: center;
+}
+
+#current-status h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#current-status p {
+    font-size: 1.1rem;
+    margin: 0 auto;
+    max-width: 800px; /* Adjust max-width as needed */
+}
