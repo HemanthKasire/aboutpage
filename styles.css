@@ -20,12 +20,27 @@ body {
 
 /* Navbar Styles */
 header {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: linear-gradient(135deg, #a2c2e0, #f0f4f8); /* Light blue gradient */
     color: #fff;
     padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    overflow: hidden; /* To hide any overflowing wave effect */
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; /* Adjust if needed */
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50% 50% 0 0;
+    animation: wave 10s linear infinite; /* Adjust animation duration */
+    z-index: 1;
 }
 
 header .logo {
@@ -33,12 +48,18 @@ header .logo {
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 20px;
+    position: relative;
+    z-index: 2;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px; /* Adjust padding if needed */
+    width: 100%;
 }
 
 header .nav-links {
@@ -52,21 +73,41 @@ header .nav-links li {
 }
 
 header .nav-links a {
-    color: #fff;
+    color: #333; /* Dark gray text color */
     text-decoration: none;
     padding: 8px 15px;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
+    position: relative;
 }
 
 header .nav-links a:hover {
-    background: #444;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
+    transform: translateY(-2px);
 }
 
+header .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #333; /* Dark gray underline */
+    transition: width 0.3s;
+}
+
+header .nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hamburger Menu */
 .hamburger {
     display: none;
     cursor: pointer;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: 20px; /* Adjust if needed */
 }
 
 .hamburger .bar {
@@ -76,6 +117,19 @@ header .nav-links a:hover {
     margin: 5px auto;
     background-color: #fff;
     transition: 0.3s;
+}
+
+/* Wave Animation */
+@keyframes wave {
+    0% {
+        transform: translateX(-50%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(50%);
+    }
 }
 
 /* Hero Section with Background Image */
@@ -89,7 +143,7 @@ header .nav-links a:hover {
 }
 
 #hero .hero-overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay to make text stand out */
+    background-color: rgba(0, 0, 0, 0.05); /* Dark overlay to make text stand out */
     position: absolute;
     top: 0;
     left: 0;
@@ -110,25 +164,174 @@ header .nav-links a:hover {
     font-size: 3rem;
     margin-bottom: 20px;
     text-transform: uppercase;
+    animation: superheroEffect 2s ease-out, pulsatingGlow 3s 2s ease-out 3, metallicEffect 3s 8s forwards, shiningEffect 2s 11s forwards;
 }
 
-#hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+/* Statement Text Size */
+#typing-text {
+    font-size: 1.5rem; /* Adjust as needed */
+    line-height: 1.6; /* Ensure readability */
+    color: #fff; /* Ensure text color contrasts with background */
 }
 
-#hero .btn {
+/* Superhero Text Animation */
+@keyframes superheroEffect {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        color: #fff;
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 0, 0, 0.8);
+        color: #ffd700; /* Gold color for a glowing effect */
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        color: #fff;
+    }
+}
+
+/* Pulsating Glow Animation */
+@keyframes pulsatingGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 0, 0, 0.8);
+    }
+}
+
+/* Enhanced Metallic Text Effect */
+@keyframes metallicEffect {
+    0% {
+        color: #fff;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+                      0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        color: #c0c0c0; /* Metallic silver color */
+        background: linear-gradient(45deg, #f0f0f0, #c0c0c0);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.6),
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Shining Text Effect */
+@keyframes shiningEffect {
+    0% {
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.6),
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.4),
+            0 0 40px rgba(255, 255, 255, 0.2);
+        color: #fff; /* White color to enhance shine */
+    }
+}
+
+/* Hero Section Button Styles */
+.hero-button {
+    margin-top: 40px; /* Increased margin to move the button down */
+}
+
+/* General Button Styles */
+.hero-button .btn {
     display: inline-block;
-    padding: 10px 25px;
-    color: #fff;
-    background: #333;
+    padding: 12px 25px;
+    font-size: 1rem;
+    color: #ffffff; /* Default text color */
+    background: linear-gradient(135deg, rgba(208, 230, 245, 0.7), rgba(176, 212, 245, 0.7)); /* Lighter blue gradient with transparency */
+    border: none;
     border-radius: 5px;
     text-decoration: none;
-    transition: background 0.3s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s, color 0.3s; /* Ensure transitions for color */
 }
 
-#hero .btn:hover {
-    background: #555;
+/* Hover and Focus Effects */
+.hero-button .btn:hover, .hero-button .btn:focus {
+    background: linear-gradient(135deg, rgba(176, 212, 245, 0.7), rgba(208, 230, 245, 0.7)); /* Reversed gradient with transparency */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    color: #f0f0f0; /* Change text color on hover */
+}
+
+/* Hover Overlay Effect */
+.hero-button .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(0, 0, 0, 0.1); /* Light overlay for effect */
+    border-radius: 50%;
+    transition: width 0.5s, height 0.5s;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0; /* Start hidden */
+}
+
+/* Overlay Effect on Hover */
+.hero-button .btn:hover::before {
+    width: 0;
+    height: 0;
+    opacity: 1; /* Show on hover */
+}
+/* Pulsating Glow Effect */
+.hero-button .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3); /* Light white overlay for glow effect */
+    border-radius: 50%;
+    transition: width 0.5s, height 0.5s, opacity 0.5s;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+}
+
+/* Pulsating Glow Animation */
+@keyframes pulsate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.hero-button .btn:hover::before {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    animation: pulsate 1s ease-out;
+}
+
+/* Text Shadow for Additional Effect */
+.hero-button .btn span {
+    position: relative;
+    z-index: 2; /* Ensure text is above the glow */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Section Titles */
@@ -140,7 +343,7 @@ section h2 {
 
 /* About Section */
 #about p {
-    font-size: 1.1rem;
+    font-size: 20px;
     margin: 20px 0;
     text-align: center;
 }
@@ -158,20 +361,56 @@ section h2 {
 }
 
 .skills-list .skill {
-    background: #333;
-    color: #fff;
+    background: #d0e6f5; /* Lighter blue color */
+    color: #000; /* Black text and icons */
     padding: 15px;
     margin: 10px;
     border-radius: 5px;
     text-align: center;
     width: 30%;
-    transition: background 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 .skills-list .skill:hover {
-    background: #555;
+    background: #b0d4f5; /* Slightly darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the skill block */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
+.skills-list .skill::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(0, 0, 0, 0.1); /* Light overlay for effect */
+    border-radius: 50%;
+    transition: width 0.5s, height 0.5s;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.skills-list .skill:hover::before {
+    width: 0;
+    height: 0;
+}
+
+.skills-list .skill i {
+    font-size: 2rem; /* Adjust icon size as needed */
+    margin-bottom: 10px;
+}
+
+.skills-list .skill h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.skills-list .skill p {
+    font-size: 1rem;
+}
 /* Projects Section */
 #projects {
     padding: 40px 0;
@@ -326,7 +565,7 @@ header, #hero {
 
 /* Current Status Section */
 #current-status {
-    background: #f4f4f4; /* Background color for the section */
+    background: #f4f4f4;
     padding: 40px 0;
     text-align: center;
 }
@@ -337,7 +576,7 @@ header, #hero {
 }
 
 #current-status p {
-    font-size: 1.1rem;
-    margin: 0 auto;
-    max-width: 800px; /* Adjust max-width as needed */
+    font-size: 20px;
+    margin: 20px 0;
+    text-align: center;
 }

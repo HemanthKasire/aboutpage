@@ -41,3 +41,23 @@ window.addEventListener('load', () => {
     document.querySelector('#hero').classList.add('active');
 });
 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const textElement = document.getElementById("typing-text");
+    const text = textElement.textContent;
+    const typingSpeed = 80; // Adjust typing speed if needed
+    let index = 0;
+
+    // Clear the original text
+    textElement.textContent = "";
+
+    function type() {
+        if (index < text.length) {
+            textElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, typingSpeed);
+        }
+    }
+
+    type();
+});
